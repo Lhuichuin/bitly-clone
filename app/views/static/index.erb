@@ -1,2 +1,42 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<header>
+    <nav>
+        <a id= "bitlylogo" href="https://bitly.com/"><img src="https://www.shareicon.net/data/128x128/2016/06/20/606567_black_128x128.png"></a>
+        <a href="/contact">Contact</a>
+        <a href="https://bitly.com/pages/about">About</a>
+    </nav>
+</header>
+
+<h1>Bit.ly Clone</h1>
+
+
+<form id="url-form" action = "/urls" method = "post" onsubmit="return false;">
+	<input id= "textbox" type="text" name="long_url" placeholder="Put in your url here" required ></input>
+	<input id= "submit" type="submit" value="Submit"></input>
+</form>
+
+<button id= "button1">Click here to see/hide previous shortend links</button>
+<button id= "button2">Hide</button>
+
+<table id="table" style="width: 50%;">
+  <tr>
+    <th>Long URL</th>
+    <th>Short URL</th>
+    <th>Delete</th>
+  </tr>
+  <% Url.all.each do |p| %>
+  <tr>
+  	<td>
+  		<a href="<%= p.long_url %>"><%= p.long_url %></a>
+  	</td>
+
+  	<td>
+  		<a href="/<%= p.short_url %>">http://localhost:9393/<%= p.short_url %></a>
+  	</td>
+
+    <td class="delete">
+      <a href="/delete/<%= p.id %>"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
